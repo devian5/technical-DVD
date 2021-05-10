@@ -48,6 +48,10 @@ class UserController {
         return User.findOne({ where: { id } });
     };
 
+    async deleteClientById(id) {
+        return User.destroy({where: { id }} )
+    };
+
 
 };
 

@@ -67,12 +67,28 @@ const findByIdHandler = async (req,res) => {
     };
 };
 
+const deleteUserHandler = async (req,res) => {
+    try {
 
+        const result = await userController.deleteClientById(req.params.id);
+
+        res.json({result,date: new Date});
+
+    } catch (error) {
+        console.log(error);
+        
+        return res.status(500).json({
+            message: error.message
+        });
+
+    };
+};
 
 
 router.post('/', createHandler);
 router.post('/login', loginHandler);
 router.get('/', userAllHandler);
 router.get('/:id', findByIdHandler);
+router.delete('/:id', deleteUserHandler);
 
 module.exports = router;
