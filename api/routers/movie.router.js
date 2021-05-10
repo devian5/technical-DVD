@@ -47,8 +47,26 @@ const findByIdHandler = async (req,res) => {
     };
 };
 
+const deleteMovieHandler = async (req,res) => {
+    try {
+
+        const result = await movieController.deleteById(req.params.id);
+
+        res.json({result,date: new Date});
+
+    } catch (error) {
+        
+        return res.status(500).json({
+            message: error.message
+        });
+
+    };
+};
+
+
 router.post('/', createHandler);
 router.get('/', movieAllHandler);
 router.get('/:id', findByIdHandler);
+router.delete('/:id', deleteMovieHandler);
 
 module.exports = router;

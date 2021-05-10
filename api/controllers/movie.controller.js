@@ -21,6 +21,11 @@ class MovieController {
     async findById(id) {
         return Movie.findOne({ where: { id } });
     };
+
+    async deleteById(id) {
+        return Movie.destroy({where: { id }} )
+    };
+
     
 };
 
