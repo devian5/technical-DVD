@@ -10,16 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsTo(models.Order, {
-        foreignKey: 'orderId',
-        sourceKey:'id'
-      }),
-      this.belongsTo(models.Movies,{
+      // define association here
+      
+      this.belongsTo(models.Movie,{
         foreignKey: 'movieId',
         sourceKey:'id'
 
-      })
-      // define association here
+      });
+
+      this.belongsTo(models.Order, {
+        foreignKey: 'orderId',
+        sourceKey:'id'
+      });
+
     }
   };
   RentalTransition.init({
