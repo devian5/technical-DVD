@@ -47,6 +47,24 @@ const findByIdHandler = async (req,res) => {
     };
 };
 
+const updateMovieHandler =  async (req,res) => {
+    try {
+        const body = req.body;
+
+        const result = await movieController.updateMovie(body,req.params.id);
+
+        res.json({result,date: new Date});
+
+    } catch (error) {
+        
+        return res.status(500).json({
+            message: error.message
+        });
+
+    };  
+};
+
+
 const deleteMovieHandler = async (req,res) => {
     try {
 
@@ -68,5 +86,6 @@ router.post('/', createHandler);
 router.get('/', movieAllHandler);
 router.get('/:id', findByIdHandler);
 router.delete('/:id', deleteMovieHandler);
+router.put('/:id', updateMovieHandler);
 
 module.exports = router;

@@ -50,7 +50,7 @@ class UserController {
 
     async updateUser(user, id) {
         return User.update(user,{where:{id}})
-      };
+    };
 
     async deleteClientById(id) {
         return User.destroy({where: { id }} )

@@ -22,11 +22,14 @@ class MovieController {
         return Movie.findOne({ where: { id } });
     };
 
+    async updateMovie(film, id) {
+        return Movie.update(film,{where:{id}})
+    };
+
     async deleteById(id) {
         return Movie.destroy({where: { id }} )
     };
 
-    
 };
 
 const movieController = new MovieController();
