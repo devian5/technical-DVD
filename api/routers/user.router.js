@@ -68,6 +68,23 @@ const findByIdHandler = async (req,res) => {
     };
 };
 
+const updateUserHandler =  async (req,res) => {
+    try {
+        const body = req.body;
+
+        const result = await userController.updateUser(body,req.params.id);
+
+        res.json({result,date: new Date});
+
+    } catch (error) {
+        
+        return res.status(500).json({
+            message: error.message
+        });
+
+    };  
+};
+
 const deleteUserHandler = async (req,res) => {
     try {
 
@@ -111,5 +128,6 @@ router.post('/logout/:id', auth, logOutHandler);
 router.get('/', userAllHandler);
 router.get('/:id', findByIdHandler);
 router.delete('/:id', deleteUserHandler);
+router.put('/:id', updateUserHandler);
 
 module.exports = router;
