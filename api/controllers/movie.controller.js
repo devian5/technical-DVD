@@ -18,6 +18,10 @@ class MovieController {
         return Movie.findAll();
     };
 
+    async findById(id) {
+        return Movie.findOne({ where: { id } });
+    };
+    
 };
 
 const movieController = new MovieController();
