@@ -17,6 +17,9 @@ module.exports = {
       runtime: {
         type: Sequelize.INTEGER
       },
+      genres:{
+        type: Sequelize.STRING
+      },
       director: {
         type: Sequelize.STRING
       },
