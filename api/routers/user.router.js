@@ -107,10 +107,9 @@ const logOutHandler = async (req, res) =>{
 
 router.post('/', createHandler);
 router.post('/login', loginHandler);
+router.post('/logout/:id', auth, logOutHandler);
 router.get('/', userAllHandler);
 router.get('/:id', findByIdHandler);
 router.delete('/:id', deleteUserHandler);
-router.post('/logout/:id', auth, logOutHandler);
-
 
 module.exports = router;

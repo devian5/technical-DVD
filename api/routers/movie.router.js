@@ -10,13 +10,30 @@ const createHandler = async (req,res) => {
         res.json({result,date: new Date});
 
     } catch (error) {
-        console.log(error)
+
         return res.status(500).json({
             message: error.message
         });
     };  
 };
 
+const movieAllHandler = async (req,res) => {
+    try {
+        
+        const result = await movieController.indexAll();
+
+        res.json({result, date: new Date});
+
+    } catch (error) {
+        
+        return res.status(500).json({
+            message: error.message
+        });
+    }
+};
+
+
 router.post('/', createHandler);
+router.get('/', movieAllHandler);
 
 module.exports = router;

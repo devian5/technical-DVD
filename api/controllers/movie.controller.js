@@ -13,6 +13,11 @@ class MovieController {
 
         return Movie.create(film);
     };
+
+    async indexAll() {
+        return Movie.findAll();
+    };
+
 };
 
 const movieController = new MovieController();
