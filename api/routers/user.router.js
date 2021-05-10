@@ -5,13 +5,17 @@ const userController = require('../controllers/user.controller');
 
 const createHandler = async (req,res) => {
     try {
-        console.log(req.body,'<==========================================')
 
         const result = await userController.create(req.body);
 
         res.json({result,date: new Date});
+
     } catch (error) {
+
         console.log(error);
+        return res.status(500).json({
+            message: error.message
+        });
     };  
 };
 
@@ -34,9 +38,28 @@ const loginHandler = async (req,res) => {
     };    
 };
 
+const userAllHandler = async (req,res) => {
+    try {
+        
+        const result = await userController.indexAll();
+
+        res.json({result, date: new Date});
+        
+    } catch (error) {
+        console.log(error)
+        
+        return res.status(500).json({
+            message: error.message
+        });
+    }
+}
+
+
 
 router.post('/', createHandler);
 router.post('/login', loginHandler);
+router.get('/', userAllHandler);
+
 
 
 module.exports = router;

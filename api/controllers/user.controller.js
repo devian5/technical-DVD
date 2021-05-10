@@ -39,7 +39,11 @@ class UserController {
         const token = jwt.sign(payload, secret);
         return {token,user}
     };
-    
+
+        async indexAll() {
+        return User.findAll();
+    };
+
 
 };
 
