@@ -12,7 +12,6 @@ const createHandler = async (req,res) => {
 
     } catch (error) {
 
-        console.log(error);
         return res.status(500).json({
             message: error.message
         });
@@ -44,22 +43,36 @@ const userAllHandler = async (req,res) => {
         const result = await userController.indexAll();
 
         res.json({result, date: new Date});
-        
+
     } catch (error) {
-        console.log(error)
         
         return res.status(500).json({
             message: error.message
         });
     }
-}
+};
+
+const findByIdHandler = async (req,res) => {
+    try {
+        
+        const result = await userController.findById(req.params.id);
+
+        res.json({result,date: new Date})
+
+    } catch (error) {
+
+        return res.status(500).json({
+            message: error.message
+        });
+    };
+};
+
 
 
 
 router.post('/', createHandler);
 router.post('/login', loginHandler);
 router.get('/', userAllHandler);
-
-
+router.get('/:id', findByIdHandler);
 
 module.exports = router;

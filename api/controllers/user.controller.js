@@ -40,8 +40,12 @@ class UserController {
         return {token,user}
     };
 
-        async indexAll() {
+    async indexAll() {
         return User.findAll();
+    };
+
+    async findById(id) {
+        return User.findOne({ where: { id } });
     };
 
 
