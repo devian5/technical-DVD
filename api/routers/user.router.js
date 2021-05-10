@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const auth = require('../middleware/auth');
 
 const userController = require('../controllers/user.controller');
 
@@ -75,7 +76,6 @@ const deleteUserHandler = async (req,res) => {
         res.json({result,date: new Date});
 
     } catch (error) {
-        console.log(error);
         
         return res.status(500).json({
             message: error.message
@@ -84,11 +84,33 @@ const deleteUserHandler = async (req,res) => {
     };
 };
 
+const logOutHandler = async (req, res) =>{
+    try {
+
+        const id = req.params.id;
+        const user =  await userController.logOut(id);
+        
+        const status = `I'll be back, ${user.firstName}`;
+        
+        res.json({ status, id, date: new Date }); 
+        
+    }catch (error) {
+        console.log('LOGOUT===============>',error)
+        
+        return res.status(401).json({
+            message: error.message
+        });
+    };
+};
+
+
 
 router.post('/', createHandler);
 router.post('/login', loginHandler);
 router.get('/', userAllHandler);
 router.get('/:id', findByIdHandler);
 router.delete('/:id', deleteUserHandler);
+router.post('/logout/:id', auth, logOutHandler);
+
 
 module.exports = router;

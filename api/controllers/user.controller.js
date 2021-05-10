@@ -22,12 +22,10 @@ class UserController {
 
     async login(email,password){
 
-        const user = await User.findOne({where:{email}})
-        if(!user){
-            throw new Error('The email does not exist');
-        };
-        if(!await bcrypt.compare(password,user.password)){
-            throw new Error('Wrong password');
+        const user = await User.findOne({where:{email}});
+
+        if(!user || !await bcrypt.compare(password,user.password)){
+            throw new Error('You shall not pass!!')
         };
 
         const payload = {
@@ -35,8 +33,10 @@ class UserController {
             tokenCreationDate: new Date,
             name: user.name,
             phone: user.phone,
-        }
+        };
+
         const token = jwt.sign(payload, secret);
+
         return {token,user}
     };
 
@@ -51,6 +51,11 @@ class UserController {
     async deleteClientById(id) {
         return User.destroy({where: { id }} )
     };
+
+    async logOut(id) {
+        return User.findByPk(id);
+    };
+
 
 
 };
