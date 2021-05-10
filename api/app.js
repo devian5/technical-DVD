@@ -2,13 +2,13 @@ const express = require('express');
 const db = require('./db');
 
 const app = express();
-// const router = require('./router');
+const router = require('./router');
 
 const port = 3002;
 
 app.use(express.json());
 
-// app.use(router);
+app.use(router);
 
 db.authenticate().then(()=>{
     console.log('DB is connected')
