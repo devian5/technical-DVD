@@ -1,4 +1,3 @@
-const { models } = require('../db');
 const { Order, User, Movie, RentalTransition } = require('../models');
 
 class OrderController {
@@ -22,6 +21,11 @@ class OrderController {
             ]
         })
     };
+
+    async indexAll() {
+        return Order.findAll();
+    };
+
 }
 
 const orderController = new OrderController();

@@ -60,8 +60,6 @@ class UserController {
         return User.findByPk(id);
     };
 
-
-
 };
 
 const userController = new UserController();
