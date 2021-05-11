@@ -26,6 +26,11 @@ class OrderController {
         return Order.findAll();
     };
 
+    async findById(id) {
+        return Order.findOne({ where: { id } });
+    };
+
+
 }
 
 const orderController = new OrderController();
