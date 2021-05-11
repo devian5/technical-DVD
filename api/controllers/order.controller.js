@@ -30,6 +30,11 @@ class OrderController {
         return Order.findOne({ where: { id } });
     };
 
+    async updateOrder(rental, id) {
+        return Order.update(rental,{where:{id}})
+    };
+
+
 
 }
 

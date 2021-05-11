@@ -47,11 +47,30 @@ const findByIdHandler = async (req,res) => {
     };
 };
 
+const updateOrderHandler =  async (req,res) => {
+    try {
+        const body = req.body;
+
+        const result = await orderController.updateOrder(body,req.params.id);
+
+        res.json({result,date: new Date});
+
+    } catch (error) {
+        
+        return res.status(500).json({
+            message: error.message
+        });
+
+    };  
+};
+
+
 
 
 router.post('/', createHandler);
 router.get('/', orderAllHandler);
 router.get('/:id', findByIdHandler);
+router.put('/:id', updateOrderHandler);
 
 
 
