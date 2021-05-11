@@ -34,7 +34,9 @@ class OrderController {
         return Order.update(rental,{where:{id}})
     };
 
-
+    async deleteById(id) {
+        return Order.destroy({where: { id }} )
+    };
 
 }
 

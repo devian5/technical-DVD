@@ -64,14 +64,26 @@ const updateOrderHandler =  async (req,res) => {
     };  
 };
 
+const deleteOrderHandler = async (req,res) => {
+    try {
 
+        const result = await orderController.deleteById(req.params.id);
 
+        res.json({result,date: new Date});
+
+    } catch (error) {
+        
+        return res.status(500).json({
+            message: error.message
+        });
+
+    };
+};
 
 router.post('/', createHandler);
 router.get('/', orderAllHandler);
 router.get('/:id', findByIdHandler);
 router.put('/:id', updateOrderHandler);
-
-
+router.delete('/:id', deleteOrderHandler);
 
 module.exports = router;
