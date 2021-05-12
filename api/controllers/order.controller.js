@@ -31,12 +31,18 @@ class OrderController {
     };
 
     async updateOrder(rental, id) {
-        return Order.update(rental,{where:{id}})
+        return Order.update(rental,{where:{ id }});
     };
 
     async deleteById(id) {
-        return Order.destroy({where: { id }} )
+        return Order.destroy({where: { id }});
     };
+
+    async movieReturn(id) {
+
+        return await RentalTransition.update({orderState: false},{ where: {orderId: id}});
+         
+    }
 
 }
 

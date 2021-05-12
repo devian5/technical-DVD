@@ -80,10 +80,28 @@ const deleteOrderHandler = async (req,res) => {
     };
 };
 
+const movieReturnHandler =  async (req,res) => {
+    try {
+        const body = req.body;
+
+        const result = await orderController.movieReturn(req.params.id);
+
+        res.json({result,date: new Date});
+
+    } catch (error) {
+        
+        return res.status(500).json({
+            message: error.message
+        });
+
+    };  
+};
+
 router.post('/', createHandler);
 router.get('/', orderAllHandler);
 router.get('/:id', findByIdHandler);
 router.put('/:id', updateOrderHandler);
+router.put('/return/:id', movieReturnHandler);
 router.delete('/:id', deleteOrderHandler);
 
 module.exports = router;
