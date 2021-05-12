@@ -26,6 +26,11 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
+      orderState: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false, 
+        defaultValue: true
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

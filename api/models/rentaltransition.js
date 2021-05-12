@@ -27,7 +27,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   RentalTransition.init({
     movieId: DataTypes.INTEGER,
-    orderId: DataTypes.INTEGER
+    orderId: DataTypes.INTEGER,
+    orderState: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'RentalTransition',
