@@ -49,6 +49,7 @@ class UserController {
     };
 
     async updateUser(user, id) {
+        user.password = await bcrypt.hash(user.password,5);
         return User.update(user,{where:{id}})
     };
 
