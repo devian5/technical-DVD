@@ -88,7 +88,7 @@ const updateUserHandler =  async (req,res) => {
 const deleteUserHandler = async (req,res) => {
     try {
 
-        const result = await userController.deleteClientById(req.params.id);
+        const result = await userController.deleteUserById(req.params.id);
 
         res.json({result,date: new Date});
 

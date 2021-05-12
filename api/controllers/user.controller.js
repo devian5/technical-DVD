@@ -53,7 +53,7 @@ class UserController {
         return User.update(user,{where:{id}})
     };
 
-    async deleteClientById(id) {
+    async deleteUserById(id) {
         return User.destroy({where: { id }} )
     };
 
