@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const auth = require('../middleware/auth');
 
 const adminController = require('../controllers/admin.controller');
 
@@ -54,6 +55,26 @@ const updateAdminHandler =  async (req,res) => {
     };  
 };
 
+const logOutHandler = async (req, res) =>{
+    try {
+
+        const id = req.params.id;
+        const user =  await adminController.logOut(id);
+        
+        const status = `I'll be back, ${user.email}`;
+        
+        res.json({ status, id, date: new Date }); 
+        
+    }catch (error) {
+        console.log('LOGOUT===============>',error)
+        
+        return res.status(401).json({
+            message: error.message
+        });
+    };
+};
+
+
 const deleteAdminHandler = async (req,res) => {
     try {
 
@@ -72,6 +93,7 @@ const deleteAdminHandler = async (req,res) => {
 
 router.post('/', createHandler);
 router.post('/login', loginHandler);
+router.post('/logout/:id', auth, logOutHandler);
 router.put('/:id', updateAdminHandler);
 router.delete('/:id', deleteAdminHandler);
 

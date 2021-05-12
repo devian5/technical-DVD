@@ -1,7 +1,7 @@
 const { Admin } = require('../models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const secret = process.env.JWT_SECRET || 'adminsecret';
+const secret = process.env.JWT_SECRET || 'dvdsecret';
 
 class AdminController {
     async create(admin){
@@ -48,6 +48,11 @@ class AdminController {
     async deleteAdminById(id) {
         return Admin.destroy({where: { id }} )
     };
+
+    async logOut(id) {
+        return Admin.findByPk(id);
+    };
+
 
 };
 
