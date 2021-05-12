@@ -36,9 +36,28 @@ const loginHandler = async (req,res) => {
     };    
 };
 
+const updateAdminHandler =  async (req,res) => {
+    try {
+
+        const body = req.body;
+
+        const result = await adminController.updateAdmin(body,req.params.id);
+
+        res.json({result,date: new Date});
+
+    } catch (error) {
+        
+        return res.status(500).json({
+            message: error.message
+        });
+
+    };  
+};
+
 
 router.post('/', createHandler);
 router.post('/login', loginHandler);
+router.put('/:id', updateAdminHandler);
 
 module.exports = router;
 
