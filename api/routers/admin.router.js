@@ -54,10 +54,26 @@ const updateAdminHandler =  async (req,res) => {
     };  
 };
 
+const deleteAdminHandler = async (req,res) => {
+    try {
+
+        const result = await adminController.deleteAdminById(req.params.id);
+
+        res.json({result,date: new Date});
+
+    } catch (error) {
+        
+        return res.status(500).json({
+            message: error.message
+        });
+
+    };
+};
 
 router.post('/', createHandler);
 router.post('/login', loginHandler);
 router.put('/:id', updateAdminHandler);
+router.delete('/:id', deleteAdminHandler);
 
 module.exports = router;
 

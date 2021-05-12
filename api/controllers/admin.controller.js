@@ -39,17 +39,14 @@ class AdminController {
     };
 
     async updateAdmin(admin, id) {
-        // const adminEmail = admin.email;
-        // const found = await Admin.findOne({ where: { email: adminEmail } });
-        
-        // if(found){
-        //     throw new Error('Email already in use')
-        // };
 
-        // console.log(admin,'que llega<==============')
         admin.password = await bcrypt.hash(admin.password,5);
         return Admin.update(admin,{where:{id}})
 
+    };
+
+    async deleteAdminById(id) {
+        return Admin.destroy({where: { id }} )
     };
 
 };
